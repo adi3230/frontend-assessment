@@ -4,6 +4,8 @@
     beginB = 80,
     endB = 320;
 
+    var menuItem = document.getElementsByClassName('menu-item');
+
   function inAC(s) {
     s.draw('80% - 240', '80%', 0.3, {
       delay: 0.1,
@@ -102,4 +104,43 @@
       removeScale(wrapper)
     }, 450);
   };
+  // Get elements by ID
+  var list = document.getElementById("menu-item");
+  var overlay = document.getElementById("overlay");
+  var first = document.getElementById("first");
+  var second = document.getElementById("second");
+
+  // BY default overlay is hidden
+  overlay.style.display= 'none';
+
+  //By clicking on list-item
+  list.addEventListener('click', function(elem) {
+    //Hide the list item
+    list.style.display= 'none';
+
+    //Apply styles to overlay
+    overlay.style.display= 'block';
+    overlay.style.position = 'absolute';
+    overlay.style.width= '100%';
+    overlay.style.height= '100%';
+    overlay.style.top= '0';
+    overlay.style.left= '0';
+
+    //apply styles to the divs inside overlay
+    first.style.float= 'left';
+    first.style.width= '50%';
+    first.style.height= '100%';
+    second.style.height= '100%';
+    second.style.backgroundColor= 'green';
+    first.style.backgroundColor= 'red';
+  },false);
+
+  //Hide the overlay on clicking outside
+  overlay.addEventListener('click', function() {
+    list.style.display= 'block';
+    overlay.style.display= 'none'
+  },false)
+
+  
+
 })();
