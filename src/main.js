@@ -154,8 +154,59 @@
   list.addEventListener('click', hideMenu,false);
 
   //Hide the overlay on clicking outside
-  overlay.addEventListener('click', showMenu,false)
+  overlay.addEventListener('click', showMenu,false);
 
+  var button = document.getElementById("submit");
+
+  function get() {
+    var url = 'https://rickandmortyapi.com/api/character/';
+    // Return new promise 
+    
+    return new Promise(function(resolve, reject) {
+
+      var req = new XMLHttpRequest();
+      req.open('GET', url, true);
+      req.setRequestHeader('Content-Type', 'text/plain');
+      req.send();
+
+
+      req.onload = function() {
+        if (req.status == 200) {
+          // Resolve the promise with the response          
+          resolve(JSON.parse(req.response));
+        }
+        else {
+          //Error hndling
+          reject(Error(req.statusText));
+        }
+      };
+
+    })
+
+     
+  }
+  function showCharacters(characters, name) {
+      //Unable to proceed currently can't think of right now
+      characters.forEach(character => {
+        //character['name]
+        // Approach would be matching the name given in object with the given name in input
+        
+      });
+  };
+    
+  function getCharacters(name) {
+    get().then(res => {
+      showCharacters(res.results, name);
+    });
+
+  }
+  
+
+  button.addEventListener('click',function(e){
+      e.preventDefault();
+      let name = document.getElementById('name').value;
+      getCharacters(name.toLowerCase());
+  },false);
   
 
 })();
