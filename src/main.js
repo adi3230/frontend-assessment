@@ -112,14 +112,24 @@
 
   // BY default overlay is hidden
   overlay.style.display= 'none';
+  list.style.display= 'block';
 
-  //By clicking on list-item
-  list.addEventListener('click', function(elem) {
-    //Hide the list item
-    list.style.display= 'none';
-
-    //Apply styles to overlay
+  // Show Overlay
+  function hide() {
     overlay.style.display= 'block';
+    list.style.display= 'none';
+  }
+
+  //Hide Overlay
+  function show() {
+    list.style.display= 'block';
+    overlay.style.display= 'none'
+  }
+
+  //Hide menu
+  function hideMenu() {
+    hide();
+
     overlay.style.position = 'absolute';
     overlay.style.width= '100%';
     overlay.style.height= '100%';
@@ -133,13 +143,18 @@
     second.style.height= '100%';
     second.style.backgroundColor= 'green';
     first.style.backgroundColor= 'red';
-  },false);
+  }
+
+  //show Menu
+  function showMenu() {
+    show();
+  }
+
+  //By clicking on list-item
+  list.addEventListener('click', hideMenu,false);
 
   //Hide the overlay on clicking outside
-  overlay.addEventListener('click', function() {
-    list.style.display= 'block';
-    overlay.style.display= 'none'
-  },false)
+  overlay.addEventListener('click', showMenu,false)
 
   
 
